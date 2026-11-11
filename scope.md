@@ -1,10 +1,12 @@
 # Scope: gissa först, kör sedan
 
-Kopiera koden nedan till en ny fil, `scope.js`, och lägg till `<script src="scope.js" defer></script>` i `index.html`.
+Kopiera koden nedan till en ny fil, `src/scope.ts`, och lägg raden `import "./scope";` överst i `src/loopar.ts`. Då körs den när sidan laddas.
+
+Obs: i TypeScript syns några av felen redan som röda understrykningar. Det är en del av poängen.
 
 **Gissa vad varje `console.log` skriver ut INNAN du kör.** Skriv din gissning som kommentar bredvid.
 
-```js
+```ts
 const kafe = "Kardemumma";
 
 function visaNamn() {

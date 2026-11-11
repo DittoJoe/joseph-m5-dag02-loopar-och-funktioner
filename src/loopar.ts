@@ -13,8 +13,8 @@
 
 // UPPGIFT 4: här är kaféets prislista. Skriv ut ett kvitto med en for...of-loop:
 //            "Kardemummabulle: 35 kr" osv, och sist "Summa: ... kr".
-const prislista = [35, 32, 59, 45];
-const namnlista = ["Kardemummabulle", "Bryggkaffe", "Ostmacka", "Latte"];
+const prislista: number[] = [35, 32, 59, 45];
+const namnlista: string[] = ["Kardemummabulle", "Bryggkaffe", "Ostmacka", "Latte"];
 // TODO
 
 // UPPGIFT 5 (utmaning): skriv ut en multiplikationstabell för 3:ans tabell,

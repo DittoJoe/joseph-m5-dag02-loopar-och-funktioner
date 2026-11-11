@@ -1,4 +1,9 @@
-// Tester för funktioner.js. Ändra inte den här filen.
+import { test, assertEqual } from "./testlib";
+import {
+  formateraPris, momsDel, medRabatt, ärÖppet, summa, snitt, största, upprepa, kvittorad, dubbla, ärJämnt,
+} from "./funktioner";
+
+// Tester för funktioner.ts. Ändra inte den här filen.
 // Läs gärna testerna: de visar exakt vad varje funktion ska göra.
 
 test("formateraPris: heltal", () => {

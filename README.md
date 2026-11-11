@@ -1,6 +1,6 @@
 # Dag 2 · Loopar och funktioner
 
-*Modul 5, UI/UX & Frontendutveckling (JavaScript), Lexicon IT-Proffs*
+*Modul 5, UI/UX & Frontendutveckling (TypeScript), Lexicon IT-Proffs*
 
 ## Vad du ska göra idag
 
@@ -8,31 +8,48 @@ Du lär dig låta koden **upprepa** (loopar) och **paketera** kod i återanvänd
 
 ## Bakgrund
 
-En loop upprepar kod utan att du skriver den flera gånger. En funktion är ett namngivet recept: du ger den indata, den ger dig ett resultat. Funktioner är grunden för all kod du skriver från och med nu. Idag lär du dig också att arbeta med **tester**: små kontroller som talar om för dig om funktionen gör det den ska. Du öppnar `tests.html` med Live Server och ser resultatet i webbläsaren.
+En loop upprepar kod utan att du skriver den flera gånger. En funktion är ett namngivet recept: du ger den indata, den ger dig ett resultat. Funktioner är grunden för all kod du skriver från och med nu. Idag lär du dig också att arbeta med **tester**: små kontroller som talar om för dig om funktionen gör det den ska. Du öppnar `tests.html` på din Vite-server och ser resultatet i webbläsaren.
+
+## TypeScript idag: typer på funktioner
+
+Varje funktion har typer på **parametrarna** och på **det den ger tillbaka**:
+
+```ts
+export function medRabatt(pris: number, procent: number): number {
+  // ...
+}
+```
+
+`pris: number` betyder att indata måste vara ett tal. `): number` betyder att funktionen ska ge ett tal tillbaka. Startfilen har typerna färdiga. Tills du skrivit `return` understryker TypeScript funktionen i rött: *A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.* Det är rätt, och försvinner när du returnerar något. `export` framför funktionen gör att testsidan kan importera den.
 
 ## Så arbetar du (samma som alltid)
 
 1. **Forka** dagens repo på GitHub (*Fork → Create fork*).
-2. **Klona din fork:** *Code → HTTPS → kopiera adressen*. I terminalen (Ctrl+ö i VS Code): `git clone <adressen>`. Öppna den nya mappen i VS Code och starta *Live Server*.
-3. **Gör uppgiften.** Spara och kontrollera i webbläsaren och Console (F12) efter varje steg. Gör en commit efter varje avslutat steg: `git add .` och `git commit -m "Beskriv vad du gjorde"`.
-4. **Skicka upp** när du är klar: `git push`.
-5. **Lämna in i Microsoft Forms.**
+2. **Klona din fork:** *Code → HTTPS → kopiera adressen*. I terminalen (Ctrl+ö i VS Code): `git clone <adressen>`. Öppna den nya mappen i VS Code.
+3. **Installera verktygen, en gång per repo:** `npm install` i terminalen.
+4. **Starta servern:** `npm run dev`. Öppna adressen den skriver ut (oftast `http://localhost:5173/`). Tryck F12 och välj fliken *Console*. Stoppa med Ctrl+C. Testsidan öppnar du på samma server: `http://localhost:5173/tests.html` (lägg till `/tests.html` efter adressen).
+5. **Gör uppgiften.** Spara och kontrollera i webbläsaren och Console efter varje steg. Gör en commit efter varje avslutat steg: `git add .` och `git commit -m "Beskriv vad du gjorde"`.
+6. **Kontrollera typerna:** `npm run typecheck`. Tyst betyder att alla typer stämmer. Röda understrykningar i VS Code är TypeScript som varnar.
+7. **Skicka upp** när du är klar: `git push`.
+8. **Lämna in i Microsoft Forms.**
 
-Fastnar du: skriv ner exakt var och vad du försökt (och vilket felmeddelande du fick), och ta det först i nästa handledda pass.
+Fastnar du: skriv ner exakt var och vad du försökt (och vilket felmeddelande du fick), och ta det först i nästa handledda pass. Problem med `npm` eller Node? Läs *Elevguide: Node, Vite och TypeScript*.
+
+> Vite tar bara bort typerna och kör koden. Den kontrollerar dem inte. Sidan kan alltså köras trots röda understrykningar.
 
 ## Uppgiften steg för steg
 
 ### Steg 1. Loopar i Console
 
-Öppna `loopar.js` och lös uppgift 1–4 (uppgift 5 är en utmaning). Använd `for`, `while` och `for...of`. Kontrollera i Console efter varje uppgift. Commit: `git commit -m "Dag 2: loopar"`.
+Öppna `src/loopar.ts` och lös uppgift 1–4 (uppgift 5 är en utmaning). Använd `for`, `while` och `for...of`. Kontrollera i Console efter varje uppgift. Commit: `git commit -m "Dag 2: loopar"`.
 
 ### Steg 2. Öppna testsidan och läs ett test
 
-Starta Live Server på `tests.html`. De flesta tester är röda, och det är meningen. Öppna `tests.js` och läs de två första testerna. Vad förväntas av `formateraPris(35)`? Gissa vad `formateraPris` ska göra innan du skriver den.
+Öppna `tests.html` på servern (`http://localhost:5173/tests.html`). De flesta tester är röda, och det är meningen. Öppna `src/tests.ts` och läs de två första testerna. Vad förväntas av `formateraPris(35)`? Gissa vad `formateraPris` ska göra innan du skriver den.
 
 ### Steg 3. Skriv funktionerna 1–3
 
-I `funktioner.js`: skriv `formateraPris`, `momsDel` och `medRabatt`. Ladda om `tests.html` efter varje funktion. Funktionen ska använda `return`, inte `console.log`. Commit när de tre testerna är gröna.
+I `src/funktioner.ts`: skriv `formateraPris`, `momsDel` och `medRabatt`. Ladda om `tests.html` efter varje funktion. Funktionen ska använda `return`, inte `console.log`. Commit när de tre testerna är gröna.
 
 ### Steg 4. Skriv funktion 4: ärÖppet
 
@@ -48,20 +65,21 @@ Du löste samma problem igår, nu ska det bli en funktion som tar `veckodag` och
 
 ### Steg 7. Pilfunktioner
 
-Skriv `dubbla` och `ärJämnt` som pilfunktioner: `const dubbla = (n) => ...`. Det är bara ett annat sätt att skriva samma sak. Skriv en kommentar som förklarar skillnaden mellan `function dubbla(n) { ... }` och pilfunktionen.
+Skriv `dubbla` och `ärJämnt` som pilfunktioner: `export const dubbla = (n: number): number => ...`. Det är bara ett annat sätt att skriva samma sak. Skriv en kommentar som förklarar skillnaden mellan `function dubbla(n) { ... }` och pilfunktionen.
 
 ### Steg 8. Scope: förutsäg
 
-Lägg till filen `scope.js` (skapa själv). Skriv koden i `scope.md` (finns i repot) i filen, men *gissa först* vad varje `console.log` skriver ut. Kör sedan och jämför. Skriv en regel med egna ord om vad en funktion kan och inte kan "se".
+Lägg till filen `src/scope.ts` (skapa själv). Skriv koden i `scope.md` (finns i repot) i filen, men *gissa först* vad varje `console.log` skriver ut. Kör sedan och jämför. Skriv en regel med egna ord om vad en funktion kan och inte kan "se".
 
 ### Steg 9. Felsök med en brytpunkt
 
-Öppna DevTools → fliken *Sources* → öppna `funktioner.js`. Klicka på radnumret i `summa` för att sätta en brytpunkt och ladda om. Koden stannar. Stega med F10 och titta på värdet av `total` i panelen *Scope*. Det här verktyget är bättre än `console.log` när du fastnar.
+Öppna DevTools → fliken *Sources* → öppna `src/funktioner.ts`. Klicka på radnumret i `summa` för att sätta en brytpunkt och ladda om. Koden stannar. Stega med F10 och titta på värdet av `total` i panelen *Scope*. Det här verktyget är bättre än `console.log` när du fastnar.
 
 ## Kontrollista: så vet du att du är klar
 
 - [ ] Alla tester på `tests.html` är gröna.
-- [ ] `loopar.js` skriver ut rätt i Console för uppgift 1–4.
+- [ ] `npm run typecheck` är tyst (inga röda understrykningar kvar).
+- [ ] `src/loopar.ts` skriver ut rätt i Console för uppgift 1–4.
 - [ ] Funktionerna använder `return` och ingen av dem använder `console.log`.
 - [ ] `snitt([])` ger `0`, och `största([])` ger `undefined`.
 - [ ] Du har skrivit minst en funktion som anropar en annan.
@@ -73,6 +91,7 @@ Lägg till filen `scope.js` (skapa själv). Skriv koden i `scope.md` (finns i re
 - Ett test är grönt redan från start, trots att du inte skrivit något. Vilket, och varför? (Svaret handlar om vad en funktion utan `return` ger tillbaka.)
 - Det röda testmeddelandet säger vad som förväntades och vad du fick. Läs det: `förväntade "35 kr" men fick undefined` betyder oftast att du glömt `return`.
 - Testar du en funktion i Console? Klistra in funktionen och anropa den: `formateraPris(35)`.
+- Skickar du fel typ till en funktion, till exempel `summa("hej")`, säger TypeScript ifrån direkt. I JavaScript hade du fått `NaN` eller konstiga resultat först när koden kördes.
 - En loop som aldrig slutar? Tryck på *Stop* i webbläsaren, eller stäng fliken. Kontrollera att räknaren ändras i loopen.
 - `for (let i = 0; i <= tal.length; i++)` går ett steg för långt. Använd `<`.
 
@@ -83,10 +102,10 @@ Lägg till filen `scope.js` (skapa själv). Skriv koden i `scope.md` (finns i re
 I formuläret fyller du i:
 
 1. Länk till din fork av det här repot.
-2. Reflektion: Vilken funktion var svårast att få grön, och vad var det som låg bakom? Hur hjälpte testerna dig?
+2. Reflektion: Vilken funktion var svårast att få grön, och vad var det som låg bakom? Hur hjälpte testerna dig? Vilket typfel i editorn var mest nyttigt, och vad hade du inte upptäckt utan typerna?
 
 ## Vill du mer? (frivilligt)
 
 - Skriv en funktion `kvitto(namn, priser)` som returnerar hela kvittot som en text med radbrytningar.
-- Lägg till egna tester i `tests.js` för `upprepa` med negativt antal. Vad *bör* hända?
+- Lägg till egna tester i `src/tests.ts` för `upprepa` med negativt antal. Vad *bör* hända?
 - Skriv `fizzbuzz(n)` (läs om uppgiften på MDN eller Wikipedia) och testa den.
