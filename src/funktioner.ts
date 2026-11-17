@@ -52,7 +52,11 @@ export function ärÖppet(veckodag: string, klockslag: number): boolean {
 
 // 5. Summan av alla tal i listan, med en loop. summa([1, 2, 3]) ger 6.
 export function summa(tal: number[]): number {
-  // TODO
+  let total: number = 0;
+  for (let i = 0; i < tal.length; i++) {
+    total = total + tal[i]
+  }
+  return total
 }
 
 // 6. Medelvärdet. snitt([2, 4, 6]) ger 4. Tom lista ger 0.
